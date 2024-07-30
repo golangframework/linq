@@ -9,6 +9,9 @@ type Iterator[TSource any] func() (item TSource, ok bool)
 
 type IQueryable[TSource any] interface {
 	Collections.IEnumerable[TSource]
+	Aggregate(aggregate func(accumulator TSource, value TSource) TSource) (result TSource)
+	AggregateFunc(accumulator TSource, aggregate func(accumulator TSource, value TSource) TSource) (result TSource)
+
 	Any() bool
 	AnyFunc(predicate system.Predicate[TSource]) bool
 	Contains(value TSource) bool
